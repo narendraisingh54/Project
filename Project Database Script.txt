@@ -17,6 +17,7 @@ drop table factory;
 drop table inbox;
 drop table orders;
 drop table warehouse_location_coverage;
+drop table DEALER_STOCK;
 
 
 create table customers( 
@@ -90,32 +91,10 @@ warehouseId varchar2(30) references warehouse(warehouseId),
 coveredArea varchar2(30)
 );
 
-select*from CUSTOMERS;
-select*from factory_items;
-select*from warehouse_items;
-select*from dealers;
-select*from items;
-select*from managers;
-select*from warehouse;
-select*from factory;
-select*from inbox;
-select*from orders;
-select*from order_item_quantity;
-select*from warehouse_location_coverage;
-
-desc customers;
-desc dealers;
-desc items;
-desc managers;
-desc warehouse;
-desc factory;
-desc inbox;
-desc factory_items;
-desc warehouse_items;
-desc orders;
-desc order_item_quantity;
-desc warehouse_location_coverage;
-
+create table dealer_stock( 
+dealerId varchar2(30)references DEALERS(dealerId),
+itemId varchar2(30)references items(itemId),
+quantity number);
 
 insert into Items values('I100','bonnet',1000);
 insert into Items values('I101','bumper',800);
@@ -129,4 +108,39 @@ insert into Items values('I107','wheel',900);
 insert into Items values('I108','head light',870);
 insert into Items values('I109','mudgaurd',560);
 commit;
-select * from items;
+
+
+insert into DEALERS values('D101','D101@gmail.com','D101@123','Ghaziabad','1234567890','Ram',4);
+commit;
+
+
+insert into dealer_stock values('D101','I101',10);
+
+select*from CUSTOMERS;
+select*from factory_items;
+select*from warehouse_items;
+select*from dealers;
+select*from items;
+select*from managers;
+select*from warehouse;
+select*from factory;
+select*from inbox;
+select*from orders;
+select*from order_item_quantity;
+select*from warehouse_location_coverage;
+select * from DEALER_STOCK;
+
+desc customers;
+desc dealers;
+desc items;
+desc managers;
+desc warehouse;
+desc factory;
+desc inbox;
+desc factory_items;
+desc warehouse_items;
+desc orders;
+desc order_item_quantity;
+desc warehouse_location_coverage;
+desc DEALER_STOCK;
+
